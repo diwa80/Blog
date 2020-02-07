@@ -85,7 +85,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::Find($id);
+        return view('admin.posts.edit')->with('post', $post)->with('categories', Category::all());
     }
 
     /**
@@ -97,7 +98,29 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required',
+            'content' =>'required',
+            // 'category-id'=>'required'
+
+        ]);
+        $post = Post::Find($id);
+
+        if($request->hasFile('featured')){
+            $featured = $request->featured;
+            $featured_new_name= time() . $featured->getClientOriginalName();
+            $featured->move('uploads/posts',$featured_new_name);
+
+            $post->featured='uploads/posts/'.$featured_new_name;
+
+        }
+        $post->title=$request->title;
+        $post->content=$request->content;
+        $post->category_id=$request->category_id;
+
+        $post->save();
+
+        return redirect()->route('post.index');
     }
 
     /**
@@ -122,5 +145,20 @@ class PostController extends Controller
 
         return view('admin.posts.trashed')->with('post', $post);
 
+    }
+
+    public function kill($id)
+    {
+        $post = Post::withTrashed()->where('id', $id)->first();
+        $post->forceDelete();
+
+        return redirect()->back();
+    }
+
+    public function restore($id)
+    {
+        $post = Post::withTrashed()->where('id', $id)->first();
+        $post->restore();
+        return redirect()->back();
     }
 }

@@ -85,6 +85,11 @@
             <li class="list-group-items">
             <a href="{{route('home')}}">Home</a>
              </li>
+             
+
+             <li class="list-group-items">
+                <a href="{{route('category.create')}}">Create new Category</a>
+             </li>
 
              <li class="list-group-items">
                 <a href="{{route('category.index')}}">Category</a>
@@ -98,8 +103,9 @@
              </li>
 
              <li class="list-group-items">
-                <a href="{{route('category.create')}}">Create new Category</a>
+                <a href="{{route('post.trashed')}}">Recycle bin</a>
              </li>
+
             </ul>
             </div>
             @endif

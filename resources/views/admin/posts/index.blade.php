@@ -19,6 +19,7 @@
     </th>
 </thead>
 <tbody>
+@if($posts->count()>0)
 @foreach($posts as $post)
 <tr>
 <td>
@@ -28,6 +29,9 @@
   {{ $post->title }}
 </td>
 
+<td>
+   <button class="btn btn-primary" ><a href="{{route('post.edit', $post->id)}}" style="color:white;"> Edit </a></button>
+</td>
 <td>
    <button class="btn btn-primary" ><a href="{{route('post.delete', $post->id)}}" style="color:white;"> Delete </a></button>
 </td>
@@ -39,6 +43,14 @@
 </tr>
 
 @endforeach
+@else
+<tr>
+
+<th colspan=5> No deleted posts
+</th>
+
+
+@endif
 
 </tbody>
 </table>
