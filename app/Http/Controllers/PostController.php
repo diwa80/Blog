@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.posts.index')->with('posts', Post::all());
     }
 
     /**
@@ -26,6 +26,8 @@ class PostController extends Controller
      */
     public function create ()
     {
+        $categories = Category::all();
+
         return view('admin.posts.create')->with('categories', Category::all());
     }
 
@@ -44,6 +46,7 @@ class PostController extends Controller
             'featured' => 'required|image',
             'content' => 'required',
             'category_id' =>'required'
+            
 
         ]);
         // dd($request->all());
@@ -57,8 +60,10 @@ class PostController extends Controller
                 'title' => $request->title,
                 'content' => $request->content,
                 'featured' => 'uploads/posts' .$featured_new_name,
-                'category_id' =>$request->category_id
+                'category_id' =>$request->category_id,
+                'slug' =>str_slug($request->title)
             ]);
+           return redirect()->back();
     }
 
     /**
@@ -103,6 +108,19 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::Find($id);
+        $post->delete();
+
+        return redirect()->back();
+
+    }
+
+    public function trashed()
+    {
+        $post = Post::onlyTrashed()->get();
+        // dd($post);
+
+        return view('admin.posts.trashed')->with('post', $post);
+
     }
 }

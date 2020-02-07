@@ -24,6 +24,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::get('/home', ['uses' => 'HomeController@index', 'as' => 'home'  ]);
     Route::get('/post/create', [ 'uses'=> 'PostController@create', 'as' => 'post.create' ]);
     Route::post('/post/store', [ 'uses'=> 'PostController@store', 'as' => 'post.store' ]);
+    Route::get('/posts', [ 'uses'=> 'PostController@index', 'as' => 'post.index' ]);
+    Route::get('/post/delete/{id}', [ 'uses'=> 'PostController@destroy', 'as' => 'post.delete' ]);
+    Route::get('/post/trashed', [ 'uses'=> 'PostController@trashed', 'as' => 'post.trashed' ]);
+
+
 
     Route::get('/category/create', [ 'uses'=> 'CategoryController@create', 'as' => 'category.create' ]);
     Route::post('/category/store', [ 'uses'=> 'CategoryController@store', 'as' => 'category.store' ]);
