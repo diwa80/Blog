@@ -46,7 +46,7 @@
 @else
 <tr>
 
-<th colspan=5> No deleted posts
+<th colspan=5> No posts
 </th>
 
 

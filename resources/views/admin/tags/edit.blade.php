@@ -7,16 +7,16 @@
 
     <div class="card">
         <div class="card-header">
-            Update category
+            Update Tag
         </div>
 
         <div class="card-body">
-            <form action="{{route('category.update', $category->id)}}" method="post" >
+            <form action="{{route('tag.update', $tag->id)}}" method="post" >
             {{csrf_field()}}
 
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" name="name" value="{{  $category->name }}" class= "form-control">
+                <input type="text" name="tag" value="{{  $tag->tag }}" class= "form-control">
             </div>
 
 
@@ -24,7 +24,7 @@
             <div class="text-center">
             <button class="btn btn-success" type="submit">
             
-            Update Category
+            Update Tag
             </button>
             </div>
 

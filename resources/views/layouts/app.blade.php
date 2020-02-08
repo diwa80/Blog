@@ -106,8 +106,28 @@
                 <a href="{{route('post.trashed')}}">Recycle bin</a>
              </li>
 
+             <li class="list-group-items">
+                <a href="{{route('tag.create')}}">Create Tags</a>
+             </li>
+
+             <li class="list-group-items">
+                <a href="{{route('tag.index')}}">Tags</a>
+             </li>
+
+             @if(Auth::user()->admin)
+             <li class="list-group-items">
+                <a href="{{route('user.index')}}">Users</a>
+             </li>
+
+             <li class="list-group-items">
+                <a href="{{route('user.create')}}">New Users</a>
+             </li>
             </ul>
             </div>
+
+             @endif
+
+            
             @endif
             <div class="col-lg-8">
             @yield('content')
