@@ -38,9 +38,14 @@
   @endif
 </td>
 
+
+
 <td>
-   <button class="btn btn-primary" ><a href="#" style="color:white;"> Delete </a></button>
+@if(Auth::id() !== $user->id)
+   <button class="btn btn-primary" ><a href="{{route('user.delete', $user->id)}}" style="color:white;"> Delete </a></button>
+   @endif
 </td>
+
 
 
 

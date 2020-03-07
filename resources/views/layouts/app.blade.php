@@ -18,6 +18,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+
+@yield('styles')
+
 </head>
 <body>
     <div id="app">
@@ -77,63 +83,81 @@
         </main> -->
     </div>
 
-    <div class="container">
+
+    <!-- <div class="container"> -->
         <div class="row">
         @if(Auth::check())
-            <div class="col-lg-4">
-            <ul class="list-group">
-            <li class="list-group-items">
+        <aside class="col-md-4">
+            <div id="sidebar" >
+            <ul class="sidebar">
+            <li class="side-menu">
             <a href="{{route('home')}}">Home</a>
              </li>
              
 
-             <li class="list-group-items">
+             <li class="side-menu">
                 <a href="{{route('category.create')}}">Create new Category</a>
              </li>
 
-             <li class="list-group-items">
+             <li class="side-menu">
                 <a href="{{route('category.index')}}">Category</a>
              </li>
 
-             <li class="list-group-items">
+             <li class="side-menu">
                 <a href="{{route('post.create')}}">Create new post</a>
              </li>
-             <li class="list-group-items">
+             <li class="side-menu">
                 <a href="{{route('post.index')}}">Posts</a>
              </li>
 
-             <li class="list-group-items">
+             <li class="side-menu">
                 <a href="{{route('post.trashed')}}">Recycle bin</a>
              </li>
 
-             <li class="list-group-items">
+             <li class="side-menu">
                 <a href="{{route('tag.create')}}">Create Tags</a>
              </li>
 
-             <li class="list-group-items">
+             <li class="side-menu">
                 <a href="{{route('tag.index')}}">Tags</a>
+             </li>
+             <li class="side-menu">
+                <a href="{{route('user.profile')}}">My Profile</a>
+             </li>
+
+             <li class="side-menu">
+                <a href="{{route('settings')}}">Settings</a>
              </li>
 
              @if(Auth::user()->admin)
-             <li class="list-group-items">
+             <li class="side-menu">
                 <a href="{{route('user.index')}}">Users</a>
              </li>
 
-             <li class="list-group-items">
+             <li class="side-menu">
                 <a href="{{route('user.create')}}">New Users</a>
              </li>
-            </ul>
-            </div>
+
+             <!-- <li class="side-menu">
+                <a href="{{route('settings')}}">Settings</a>
+             </li> -->
+            
 
              @endif
 
+             </ul>
+            </div> 
+    </aside>
             
             @endif
-            <div class="col-lg-8">
-            @yield('content')
+            <div class="panel col-lg-8">
+                 @yield('content')
             </div>
+            
         </div>
         
-    </div>
+   
+
+    @yield('scripts')
 </body>
 </html>
